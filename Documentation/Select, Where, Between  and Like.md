@@ -140,5 +140,7 @@
 
     Let's delete the `student_id` from our **'student'** table
     ```sql
-    
+    DELETE
+    FROM [students]
+    WHERE [student_id] = 'S0006'
     ```

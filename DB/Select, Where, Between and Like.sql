@@ -45,6 +45,7 @@ FROM [students]
 WHERE [student_id] = 'S0006';
 
 --Method 2:
+--Dropping foreign key of enrollments and creating a new foreign key
 ALTER TABLE [dbo].[enrollments] DROP CONSTRAINT [student_fk]
 GO
 
@@ -55,6 +56,7 @@ GO
 ALTER TABLE [dbo].[enrollments] CHECK CONSTRAINT [student_fk]
 GO
 
+--Dropping foreign key of payments and creating a new foreign key
 ALTER TABLE [dbo].[payments] DROP CONSTRAINT [student_payment_fk]
 GO
 
