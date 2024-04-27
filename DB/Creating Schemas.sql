@@ -73,7 +73,8 @@ VALUES ('S0001','Mathesh','Premkumar','2003-01-21','mathesh123@email.com','77885
 	    ('S0007','Raj','Kumar','2002-01-01','rajkumarr@gmail.com','5563923732'),
 	    ('S0008','Krishna','Moorthy','2002-08-22','krishmoor@none.com','8834023756'),
 	    ('S0009','Nishant','S','2003-01-17','nishant007@xmail.com','6645382299'),
-	    ('S0010','Karthick','K','2002-09-24','karthinah@fmail.com','7878964645');
+	    ('S0010','Karthick','K','2002-09-24','karthinah@fmail.com','7878964645'),
+		('S0011','Ketheesa','K','keth6211@gmail.com','2003-06-30','7734644278');
 
 INSERT INTO [teacher] 
 ([teacher_id],[first_name],[last_name],[email])
