@@ -60,7 +60,8 @@ VALUES ('E0001','S0002','C0004','2023-10-04'),
 		('E0007','S0009','C0009','2024-02-14'),
 		('E0008','S0009','C0002','2024-02-16'),
 		('E0009','S0006','C0004','2023-04-25'),
-		('E0010','S0006','C0003','2023-09-10')
+		('E0010','S0006','C0003','2023-09-10');
+
 
 INSERT INTO [students] 
 ([student_id],[first_name],[last_name],[date_of_birth],[email],[phone_number])
@@ -87,7 +88,8 @@ VALUES ('T0001','Ragav','kumar','ragavkumarv@gmail.com'),
 	    ('T0007','Ajith','Kumar','ajithkumarak@vmail.com'),
 	    ('T0008','Ashok','Selvan','ashokashok@email.com'),
 	    ('T0009','Myskin','M','mmyskin@lmail.com'),
-	    ('T0010','Vinoth','H','hvinoth@gmail.com');
+	    ('T0010','Vinoth','H','hvinoth@gmail.com'),
+		('T0011','Gautham','Menon','gauthamvmenon@gmail.com');
 
 INSERT INTO [course] ([course_id],[course_name],[credits],[teacher_id])
 VALUES ('C0001','Problem Solving and Python Programming',3,'T0005'),
