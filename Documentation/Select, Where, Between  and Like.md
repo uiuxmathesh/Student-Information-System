@@ -27,26 +27,7 @@
     SET [email] = 'prithvirajsukumaran21@gmail.com'
     WHERE [teacher_id] = 'T0004'
     ```
-4. Update the "Courses" table to assign a specific teacher to a course. Choose any course and teacher from the respective tables
-
-    Let's say we're updating the course with course_id = 'C0010'. It is assigned to teacher with teacher_id = 'T0008'.
-    We're going to update the teeacher_id to 'T0010'
-
-    ```sql
-    UPDATE [course]
-    SET [teacher_id] = 'T0010'
-    WHERE [course_id] = 'C0010'
-    ```
-5. Update the payment amount for a specific payment record in the "Payments" table. Choose any payment record and modify the payment amount
-
-    Let's say we want to modify the payment record with `payment_id = 'P006'`. We want to update the amount as `amount = 2250.0`
-    ```sql
-    UPDATE [payments]
-    SET [amount] = 2250.0
-    WHERE [payment_id] = 'P0006'
-    ```
-
-6. Delete a specific enrollment record from the "Enrollments" table. Select an enrollment record based on the student and course.
+4. Delete a specific enrollment record from the "Enrollments" table. Select an enrollment record based on the student and course.
     
     It is said to delete a enrollment record from the 'Enrollments' table.
     Additionally, we need to delete the record based on student and course. 
@@ -71,7 +52,19 @@
     FROM [enrollments]
     WHERE [student_id] = 'S0001' AND [course_id] = 'C0005'
     ```
-7. Delete a specific student from the "Students" table and remove all their enrollment records from the "Enrollments" table. Be sure to maintain referential integrity
+
+5. Update the "Courses" table to assign a specific teacher to a course. Choose any course and teacher from the respective tables
+
+    Let's say we're updating the course with course_id = 'C0010'. It is assigned to teacher with teacher_id = 'T0008'.
+    We're going to update the teeacher_id to 'T0010'
+
+    ```sql
+    UPDATE [course]
+    SET [teacher_id] = 'T0010'
+    WHERE [course_id] = 'C0010'
+    ```
+
+6. Delete a specific student from the "Students" table and remove all their enrollment records from the "Enrollments" table. Be sure to maintain referential integrity
 
     It is given that we need to delete a record from **'students'** table. While doing so we must also delete the records in the **'enrollments'** table which are associated with the particular `student_id` that gets deleted. Additionally, we need to also delete records from **'payments'** table as that might also be associated with that particular `student-id`. This helps to ensure that the referential integrity remains unaffected.
 
@@ -143,4 +136,12 @@
     DELETE
     FROM [students]
     WHERE [student_id] = 'S0006'
+    ```
+7. Update the payment amount for a specific payment record in the "Payments" table. Choose any payment record and modify the payment amount
+
+    Let's say we want to modify the payment record with `payment_id = 'P006'`. We want to update the amount as `amount = 2250.0`
+    ```sql
+    UPDATE [payments]
+    SET [amount] = 2250.0
+    WHERE [payment_id] = 'P0006'
     ```
