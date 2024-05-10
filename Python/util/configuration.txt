@@ -1,0 +1,3 @@
+server_name = "Mathesh-PC"
+database_name = "SISDB"
+trusted_connection = "Yes"

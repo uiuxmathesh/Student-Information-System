@@ -1,6 +1,6 @@
 from datetime import datetime
 from pprint import pprint as print
-from exceptions import custom_exceptions as e
+# from exceptions import custom_exceptions as e
 
 
 #1 
@@ -65,15 +65,13 @@ class Course:
 class Student:
     
     
-    def __init__(self, studentId:int, fname:str, lname:str, dob:datetime, email:str, phone:str):
-        self.studentId = studentId
+    def __init__(self, fname:str, lname:str, dob:str, email:str, phone:str):
         self.fname = fname
         self.lname = lname
-        self.dob = datetime.strptime(dob, '%d-%m-%Y').date()
+        self.dob = datetime.strptime(dob, '%Y-%m-%d').date()
         self.email = email
         self.phone = phone
-        self.payment_history = []
-        self.enrollments = set()
+        
 
     def enroll_in_course(self,course:Course):
         if course in self.enrollments:
