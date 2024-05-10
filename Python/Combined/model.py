@@ -18,6 +18,7 @@ class Teacher:
         self.email = email
         self.course = None
 
+    
     @staticmethod
     def teacherMenu():
         """
