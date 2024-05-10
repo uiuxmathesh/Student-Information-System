@@ -16,3 +16,14 @@ class DBConnUtil:
         else:
             print("Connection already established")
         return DBConnUtil.conn
+        
+    @staticmethod
+    def closeConnection():
+        if DBConnUtil.conn is not None:
+            DBConnUtil.conn.close()
+            DBConnUtil.conn = None
+            print("Connection Closed")
+        
+        else:
+            print("No such connection exists")
+        return DBConnUtil.conn
