@@ -2,3 +2,6 @@
 
 /Python/classes/__pycache__
 /Python/classes/backups
+
+/Python/Combined/
+.gitignore

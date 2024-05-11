@@ -1,7 +1,7 @@
 from datetime import datetime
 from custom_exceptions import *
 # from pprint import pprint as print
-from StudentServices import *
+from Services import *
 
 # from exceptions import custom_exceptions as e
 
@@ -368,7 +368,6 @@ class Student:
         studentId = input("Enter the Student-ID for Enrollment: ")
         enrollment = Enrollment(studentId, courseId)
         studentService = StudentServices()
-        studentService.enroll_in_course(enrollment)
         return
     
     @classmethod
@@ -399,8 +398,8 @@ class Student:
         studentService.list_enrolled_courses(student)
         return
 
-    def setEnrollments(self,enrollments):
-        self.enrollments.add(enrollments)
+    def setEnrollments(cls,enrollments):
+        cls.enrollments.add(enrollments)
         
     @staticmethod
     def studentMenu():
@@ -594,3 +593,7 @@ class Enrollment:
 
             elif choice == 3:
                 break
+
+
+
+            

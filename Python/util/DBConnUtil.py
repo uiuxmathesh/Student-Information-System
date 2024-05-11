@@ -1,6 +1,6 @@
 import pyodbc
 
-from PropertyUtil import PropertyUtil
+from .PropertyUtil import PropertyUtil
 
 class DBConnUtil:
     conn = None
@@ -10,9 +10,18 @@ class DBConnUtil:
             connectionString = PropertyUtil.getPropertyString()
             try:
                 DBConnUtil.conn = pyodbc.connect(connectionString)
-                print("Connection Established Successfully")
             except ConnectionError as err:
                 print(f"Failed to establish connection: {err}")
         else:
             print("Connection already established")
+        return DBConnUtil.conn
+        
+    @staticmethod
+    def closeConnection():
+        if DBConnUtil.conn is not None:
+            DBConnUtil.conn.close()
+            DBConnUtil.conn = None
+        
+        else:
+            print("No such connection exists")
         return DBConnUtil.conn
