@@ -43,12 +43,10 @@ class InvalidEnrollmentDataException(Exception):
     def __init__(self,message):
         self.message = message
         super().__init__(self.message)
-
 class InvalidPaymentDataException(Exception):
     def __init__(self,message):
         self.message = message
         super().__init__(self.message)
-
 
 class InsufficientFundsException(Exception):
     def __init__(self,message):
