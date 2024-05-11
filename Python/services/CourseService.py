@@ -7,24 +7,36 @@ from tabulate import tabulate
 class CourseService:
 
     def assign_teacher(self, course, teacher):
+        query1 = "SELECT [teacher_id] FROM [teacher] WHERE [email] = ?"
+        query2 = "SELECT [course_id] FROM [course] WHERE [course_code] = ?"
         query = "UPDATE [course] SET [teacher_id] = ? WHERE [course_id] = ?"
         connection = DBConnUtil.getConnection()
         cursor = connection.cursor()
         try:
-            if teacher.teacherId == "":
+            if teacher.email == "":
                 raise InvalidTeacherDataException(f"Teacher-ID cannot be empty. Try giving a string instead")
-            elif course.courseId == "":
+            elif course.code == "":
                 raise InvalidCourseDataException(f"Course-ID cannot be empty. Try giving a string instead")     
         except Exception as err:
             print(f"ERROR: {err}")
         else:
             try:
-                cursor.execute(query, (teacher.teacherId,course.courseId))
-            except pyodbc.Error as err:
+                cursor.execute(query1, (teacher.email))
+                teacherID = cursor.fetchone()[0]
+            except Exception as err:
                 try:
-                    raise TeacherNotFoundException(f"Teacher-ID: {teacher.teacherId} is not in database.")
+                    raise TeacherNotFoundException(f"Teacher Email: {teacher.email} is not in database.")
                 except Exception as err:
                     print(err)
+            try:
+                cursor.execute(query2,(course.code))
+                courseID = cursor.fetchone()[0]
+            except Exception as err:
+                try:
+                    raise CourseNotFoundException(f"Course code: {course.code} is not in database.")
+                except Exception as err:
+                    print(err)
+            
         finally:
             connection.commit()
             connection = DBConnUtil.closeConnection()
