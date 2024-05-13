@@ -1,37 +1,41 @@
-
+from Util import DBConnUtil
+from Model import *
 
 class TeacherDao:
 
-    def __init__(self):
-        self.connection = None
-        self.cursor = self.connection.cursor()  
 
-    def updateTeacherInfo(self,teacher):
+    def updateTeacherInfo(self,teacher): # WORKING GOOD AS EXPECTED
+        self.connection = DBConnUtil.getConnection()
+        self.cursor = self.connection.cursor()
         query = "UPDATE [teacher] SET [first_name] =?, [last_name] = ?, email = ?, [expertise] = ? WHERE [teacher_id] = ?"
         values = (teacher.fname, teacher.lname, teacher.email, teacher.expertise, teacher.teacherId)
         self.cursor.execute(query, values)
         self.cursor.commit()    
         self.cursor.close()
-        self.connection = None
+        self.connection = DBConnUtil.closeConnection()
 
-    def displayTeacherInfo(self,teacher):
+    def displayTeacherInfo(self,teacher:Teacher): # WORKING GOOD AS EXPECTED
+        self.connection = DBConnUtil.getConnection()
+        self.cursor = self.connection.cursor()
         query = "SELECT * FROM [teacher] WHERE [teacher_id] = ?"
-        values = (teacher.teacherId)
+        values = (teacher.teacherId,)
         self.cursor.execute(query, values)
         teacherInfo = self.cursor.fetchall()
-        headers = (column[0] for column in self.cursor.description)
-        teacherInfo = [headers] + teacherInfo
+        # headers = (column[0] for column in self.cursor.description)
+        # teacherInfo = [headers] + teacherInfo
         self.cursor.close()
-        self.connection = None
+        self.connection = DBConnUtil.closeConnection()
         return teacherInfo
 
-    def getAssignedCourses(self,teacher):
-        query = "SELECT * FROM [courses] WHERE [teacher_id] = ?"
+    def getAssignedCourses(self,teacher): # WORKING GOOD AS EXPECTED
+        self.connection = DBConnUtil.getConnection()
+        self.cursor = self.connection.cursor()
+        query = "SELECT * FROM [course] WHERE [teacher_id] = ?"
         values = (teacher.teacherId)
         self.cursor.execute(query, values)
-        headers = (column[0] for column in self.cursor.description)
         assignedCourses = self.cursor.fetchall()
-        assignedCourses = [headers] + assignedCourses
+        # headers = (column[0] for column in self.cursor.description)
+        # assignedCourses = [headers] + assignedCourses
         self.cursor.close()
-        self.connection = None
+        self.connection = DBConnUtil.closeConnection()
         return assignedCourses
