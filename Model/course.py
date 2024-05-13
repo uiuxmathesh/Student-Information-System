@@ -1,62 +1,71 @@
 from Exceptions.custom_exceptions import InvalidCourseDataException
 class Course:
     def __init__(self):
-        self.code = None
-        self.name = None
-        self.fee = None
-        self.credit = None
-        self.teacherId = None
+        self._code = None
+        self._name = None
+        self._fee = None
+        self._credit = None
+        self._teacherId = None
+        self._enrollments = list()
 
     @property
-    def code(self):
-        return self.code
+    def _code(self):
+        return self._code
     
-    @code.setter
-    def code(self, code):
+    @_code.setter
+    def _code(self, code):
         if len(code) == 0:
             raise InvalidCourseDataException("Course code cannot be empty")
-        self.code = code
+        self._code = code
 
     @property
-    def name(self):
-        return self.name
+    def _name(self):
+        return self._name
     
-    @name.setter
-    def name(self, name):
+    @_name.setter
+    def _name(self, name):
         if len(name) == 0:
             raise InvalidCourseDataException("Course name cannot be empty")
-        self.name = name    
+        self._name = name    
 
     @property
-    def fee(self):
-        return self.fee
+    def _fee(self):
+        return self._fee
     
-    @fee.setter
-    def fee(self, fee):
+    @_fee.setter
+    def _fee(self, fee):
         if fee < 0:
             raise InvalidCourseDataException("Course fee cannot be negative")
-        self.fee = fee
+        self._fee = fee
 
     @property
-    def credit(self):
-        return self.credit
+    def _credit(self):
+        return self._credit
     
-    @credit.setter
-    def credit(self, credit):
+    @_credit.setter
+    def _credit(self, credit):
         if credit < 0:
             raise InvalidCourseDataException("Course credit cannot be negative")
-        self.credit = credit
+        self._credit = credit
 
     @property
-    def teacherId(self):
-        return self.teacherId
+    def _teacherId(self):
+        return self._teacherId
     
-    @teacherId.setter
-    def teacherId(self, teacherId):
+    @_teacherId.setter
+    def _teacherId(self, teacherId):
         if len(teacherId) == 0:
             raise InvalidCourseDataException("Teacher ID cannot be empty")
-        self.teacherId = teacherId   
+        self._teacherId = teacherId  
+
+    @property
+    def _enrollments(self):
+        return self._enrollments
+
+    @_enrollments.setter
+    def _enrollments(self, enrollments):
+        self._enrollments.append(enrollments)
 
     def __str__(self):
-        return f"Course ID: {self.credit}, Name: {self.name}, Code: {self.code}, course fee: {self.fee} ,Instructor Name: {self.teacherId}"
+        return f"Course ID: {self._credit}, Name: {self._name}, Code: {self._code}, course fee: {self._fee} ,Instructor Name: {self._teacherId}"
     

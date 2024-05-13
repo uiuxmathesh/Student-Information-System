@@ -1,61 +1,71 @@
 from Exceptions.custom_exceptions import InvalidTeacherDataException
 class Teacher:
     def __init__(self):
-        self.teacherId = None
-        self.fname = None
-        self.lname = None
-        self.email = None
-        self.expertise = None
+        self._teacherId = None
+        self._fname = None
+        self._lname = None
+        self._email = None
+        self._expertise = None
+        self._assignedCourses = list()
 
     @property
-    def teacherId(self):
-        return self.teacherId
+    def _teacherId(self):
+        return self._teacherId
     
-    @teacherId.setter
-    def teacherId(self, teacherId):
+    @_teacherId.setter
+    def _teacherId(self, teacherId):
         if len(teacherId) == 0:
             raise InvalidTeacherDataException("Teacher ID cannot be empty")
-        self.teacherId = teacherId
+        self._teacherId = teacherId
 
     @property
-    def fname(self):
-        return self.fname
+    def _fname(self):
+        return self._fname
     
-    @fname.setter
-    def fname(self, fname):
+    @_fname.setter
+    def _fname(self, fname):
         if len(fname) == 0:
             raise InvalidTeacherDataException("First Name cannot be empty")
-        self.fname = fname
+        self._fname = fname
 
     @property
-    def lname(self):
-        return self.lname
+    def _lname(self):
+        return self._lname
     
-    @lname.setter
-    def lname(self, lname):
+    @_lname.setter
+    def _lname(self, lname):
         if len(lname) == 0:
             raise InvalidTeacherDataException("Last Name cannot be empty")  
-        self.lname = lname
+        self._lname = lname
 
     @property
-    def email(self):
-        return self.email
+    def _email(self):
+        return self._email
     
-    @email.setter
-    def email(self, email):
+    @_email.setter
+    def _email(self, email):
         if len(email) == 0:
             raise InvalidTeacherDataException("Please provide email")
-        self.email = email
+        self._email = email
 
     @property
-    def expertise(self):
-        return self.expertise
+    def _expertise(self):
+        return self._expertise
     
-    @expertise.setter
-    def expertise(self, expertise):
+    @_expertise.setter
+    def _expertise(self, expertise):
         if len(expertise) == 0:
             raise InvalidTeacherDataException("Please provide expertise")
-        self.expertise = expertise
+        self._expertise = expertise
+
+    @property
+    def _assignedCourses(self):
+        return self._assignedCourses
+    
+    @_assignedCourses.setter
+    def _assignedCourses(self, assignedCourses):
+        self._assignedCourses = assignedCourses
+
 
     def __str__(self):
-        return f"Teacher ID: {self.teacherId}, First Name: {self.fname}, Last Name: {self.lname}, Email: {self.email}, Expertise: {self.expertise}"
+        return f"Teacher ID: {self._teacherId}, First Name: {self._fname}, Last Name: {self._lname}, Email: {self._email}, Expertise: {self._expertise}"

@@ -6,6 +6,8 @@ class Enrollment:
         self.studentId = None
         self.courseId = None
         self.enrollmentDate = None
+        self.student = None
+        self.course = None
 
     @property
     def enrollmentId(self):
@@ -49,6 +51,14 @@ class Enrollment:
             self.enrollmentDate = str(datetime.strptime(enrollmentDate, "%Y-%m-%d"))
         except Exception as e:
             raise InvalidEnrollmentDataException("Invalid Enrollment Date format. Please use YYYY-MM-DD format.")
+        
+    @property
+    def student(self):
+        return self.student
+    
+    @student.setter
+    def student(self, student):
+        self.student = student
         
     def __str__(self):
         return f"Enrollment ID: {self.enrollmentId}, Student ID: {self.studentId}, Course ID: {self.courseId}, Enrollment Date: {self.enrollmentDate}"
