@@ -1,4 +1,4 @@
-
+from Exceptions.custom_exceptions import InvalidCourseDataException
 class Course:
     def __init__(self):
         self.code = None
@@ -13,6 +13,8 @@ class Course:
     
     @code.setter
     def code(self, code):
+        if len(code) == 0:
+            raise InvalidCourseDataException("Course code cannot be empty")
         self.code = code
 
     @property
@@ -21,6 +23,8 @@ class Course:
     
     @name.setter
     def name(self, name):
+        if len(name) == 0:
+            raise InvalidCourseDataException("Course name cannot be empty")
         self.name = name    
 
     @property
@@ -29,6 +33,8 @@ class Course:
     
     @fee.setter
     def fee(self, fee):
+        if fee < 0:
+            raise InvalidCourseDataException("Course fee cannot be negative")
         self.fee = fee
 
     @property
@@ -36,8 +42,10 @@ class Course:
         return self.credit
     
     @credit.setter
-    def credit(self, courseId):
-        self.credit = courseId
+    def credit(self, credit):
+        if credit < 0:
+            raise InvalidCourseDataException("Course credit cannot be negative")
+        self.credit = credit
 
     @property
     def teacherId(self):
@@ -45,6 +53,8 @@ class Course:
     
     @teacherId.setter
     def teacherId(self, teacherId):
+        if len(teacherId) == 0:
+            raise InvalidCourseDataException("Teacher ID cannot be empty")
         self.teacherId = teacherId   
 
     def __str__(self):

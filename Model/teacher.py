@@ -1,4 +1,4 @@
-
+from Exceptions.custom_exceptions import InvalidTeacherDataException
 class Teacher:
     def __init__(self):
         self.teacherId = None
@@ -13,6 +13,8 @@ class Teacher:
     
     @teacherId.setter
     def teacherId(self, teacherId):
+        if len(teacherId) == 0:
+            raise InvalidTeacherDataException("Teacher ID cannot be empty")
         self.teacherId = teacherId
 
     @property
@@ -21,6 +23,8 @@ class Teacher:
     
     @fname.setter
     def fname(self, fname):
+        if len(fname) == 0:
+            raise InvalidTeacherDataException("First Name cannot be empty")
         self.fname = fname
 
     @property
@@ -29,6 +33,8 @@ class Teacher:
     
     @lname.setter
     def lname(self, lname):
+        if len(lname) == 0:
+            raise InvalidTeacherDataException("Last Name cannot be empty")  
         self.lname = lname
 
     @property
@@ -37,6 +43,8 @@ class Teacher:
     
     @email.setter
     def email(self, email):
+        if len(email) == 0:
+            raise InvalidTeacherDataException("Please provide email")
         self.email = email
 
     @property
@@ -45,6 +53,8 @@ class Teacher:
     
     @expertise.setter
     def expertise(self, expertise):
+        if len(expertise) == 0:
+            raise InvalidTeacherDataException("Please provide expertise")
         self.expertise = expertise
 
     def __str__(self):
