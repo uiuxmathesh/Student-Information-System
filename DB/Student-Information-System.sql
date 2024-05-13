@@ -16,7 +16,7 @@ GO
 --e. Payments
  -- Tables are created with appropriate data types, constraints, and relationships.
 CREATE TABLE [students] (
-  [student_id] varchar(5),
+  [student_id] varchar(10) NOT NULL,
   [first_name] varchar(255),
   [last_name] varchar(255),
   [date_of_birth] date,
@@ -26,25 +26,27 @@ CREATE TABLE [students] (
 );
 
 CREATE TABLE [teacher] (
-  [teacher_id] varchar(5),
+  [teacher_id] varchar(10) NOT NULL,
   [first_name] varchar(255),
   [last_name] varchar(255),
   [email] varchar(255),
+  [expertise] varchar(255),
   CONSTRAINT teacher_pk PRIMARY KEY ([teacher_id])
 );
 
 CREATE TABLE [course] (
-  [course_id] varchar(5),
+  [course_code] varchar(10) NOT NULL,
   [course_name] varchar(255),
   [credits] int,
-  [teacher_id] varchar(5),
+  [teacher_id] varchar(10),
+  [course_fee] float,
   CONSTRAINT course_pk PRIMARY KEY ([course_id]),
   CONSTRAINT teacher_fk FOREIGN KEY(teacher_id) REFERENCES teacher([teacher_id])
 );
 
 CREATE TABLE [payments] (
-  [payment_id] varchar(5),
-  [student_id] varchar(5),
+  [payment_id] int  NOT NULL IDENTITY(100,1),
+  [student_id] varchar(10),
   [amount] float,
   [payment_date] date,
   CONSTRAINT payment_pk PRIMARY KEY ([payment_id]),
@@ -52,9 +54,9 @@ CREATE TABLE [payments] (
 );
 
 CREATE TABLE [enrollments] (
-  [enrollment_id] varchar(5),
-  [student_id] varchar(5),
-  [course_id] varchar(5),
+  [enrollment_id] int  NOT NULL IDENTITY(200,1),
+  [student_id] varchar(10),
+  [course_code] varchar(10),
   [enrollment_date] date,
   CONSTRAINT enrollment_pk PRIMARY KEY ([enrollment_id]),
   CONSTRAINT student_fk FOREIGN KEY (student_id) REFERENCES students([student_id]),

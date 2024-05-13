@@ -1,26 +1,11 @@
 
 class Course:
     def __init__(self):
-        self.courseId = None
-        self.name = None
         self.code = None
-        self.instructor_name = None
-
-    @property
-    def courseId(self):
-        return self.courseId
-    
-    @courseId.setter
-    def courseId(self, courseId):
-        self.courseId = courseId
-
-    @property
-    def name(self):
-        return self.name
-    
-    @name.setter
-    def name(self, name):
-        self.name = name
+        self.name = None
+        self.fee = None
+        self.credit = None
+        self.teacherId = None
 
     @property
     def code(self):
@@ -31,13 +16,37 @@ class Course:
         self.code = code
 
     @property
-    def instructor_name(self):
-        return self.instructor_name
+    def name(self):
+        return self.name
     
-    @instructor_name.setter
-    def instructor_name(self, instructor_name):
-        self.instructor_name = instructor_name
+    @name.setter
+    def name(self, name):
+        self.name = name    
+
+    @property
+    def fee(self):
+        return self.fee
+    
+    @fee.setter
+    def fee(self, fee):
+        self.fee = fee
+
+    @property
+    def credit(self):
+        return self.credit
+    
+    @credit.setter
+    def credit(self, courseId):
+        self.credit = courseId
+
+    @property
+    def teacherId(self):
+        return self.teacherId
+    
+    @teacherId.setter
+    def teacherId(self, teacherId):
+        self.teacherId = teacherId   
 
     def __str__(self):
-        return f"Course ID: {self.courseId}, Name: {self.name}, Code: {self.code}, Instructor Name: {self.instructor_name}"
+        return f"Course ID: {self.credit}, Name: {self.name}, Code: {self.code}, course fee: {self.fee} ,Instructor Name: {self.teacherId}"
     
