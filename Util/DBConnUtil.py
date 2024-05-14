@@ -4,24 +4,31 @@ from .PropertyUtil import PropertyUtil
 
 class DBConnUtil:
     conn = None
-    @staticmethod
-    def getConnection():
-        if DBConnUtil.conn is None:
+
+    def __init__(self):
+        self.connection = self.getConnection()
+        self.cursor = self.connection.cursor()
+
+    def close(self):
+        self.closeConnection()
+    
+    def getConnection(self):
+        if self.conn is None:
             connectionString = PropertyUtil.getPropertyString()
             try:
-                DBConnUtil.conn = pyodbc.connect(connectionString)
+                self.conn = pyodbc.connect(connectionString)
             except ConnectionError as err:
                 print(f"Failed to establish connection: {err}")
         else:
             print("Connection already established")
-        return DBConnUtil.conn
-        
-    @staticmethod
-    def closeConnection():
-        if DBConnUtil.conn is not None:
-            DBConnUtil.conn.close()
-            DBConnUtil.conn = None
+        return self.conn
+
+
+    def closeConnection(self):
+        if self.conn is not None:
+            self.conn.close()
+            self.conn = None
         
         else:
             print("No such connection exists")
-        return DBConnUtil.conn
+        return self.conn
