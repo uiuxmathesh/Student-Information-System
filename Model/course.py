@@ -66,6 +66,14 @@ class Course:
     @classmethod
     def enrollments(cls, enrollments):
         cls._enrollments.append(enrollments)
+    
+    def create_by_list(self, data):
+        self.code = data[0]
+        self.name = data[1]
+        self.credit = data[2]
+        self.teacherId = data[3]
+        self.fee = data[4]
+        
 
     def __str__(self):
         return f"Course Code: {self.code}, Name: {self.name}, Credits: {self.credit}, course fee: {self.fee} ,Instructor Name: {self.teacherId}"

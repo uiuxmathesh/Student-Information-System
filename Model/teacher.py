@@ -66,8 +66,14 @@ class Teacher:
     
     @classmethod
     def assignedCourses(cls, assignedCourses):
-        cls._assignedCourses = assignedCourses
+        cls._assignedCourses.append(assignedCourses)
 
+    def create_by_list(self, data):
+        self.teacherId = data[0]
+        self.fname = data[1]
+        self.lname = data[2]
+        self.email = data[3]
+        self.expertise = data[4]
 
     def __str__(self):
         return f"Teacher ID: {self.teacherId}, First Name: {self.fname}, Last Name: {self.lname}, Email: {self.email}, Expertise: {self.expertise}"

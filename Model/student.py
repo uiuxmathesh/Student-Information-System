@@ -52,7 +52,7 @@ class Student:
         if dob == "":
             raise InvalidStudentDataException("Invalid DOB")
         try:
-            self._dob = str(datetime.strptime(dob, "%Y-%m-%d"))
+            self._dob = str(datetime.strptime(dob, "%Y-%m-%d").date())
         except Exception as e:
             raise InvalidStudentDataException("Invalid DOB format. Please use YYYY-MM-DD format.")
 
@@ -85,6 +85,14 @@ class Student:
     @classmethod
     def enrollments(cls, enrollments):
         cls._enrollments.append(enrollments)
+
+    def create_by_list(self,data):
+        self.studentId = data[0]
+        self.fname = data[1]
+        self.lname = data[2]
+        self.dob = data[3]
+        self.email = data[4]
+        self.phone = data[5]
 
     def __str__(self):
         return f"Student ID: {self._studentId}, First Name: {self._fname}, Last Name: {self._lname}, DOB: {self._dob}, Email: {self._email}, Phone: {self._phone}"

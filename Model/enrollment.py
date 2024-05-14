@@ -48,7 +48,7 @@ class Enrollment:
         if enrollmentDate == "":
             raise InvalidEnrollmentDataException("Enrollment Date cannot be empty")
         try:
-            self.enrollmentDate = str(datetime.strptime(enrollmentDate, "%Y-%m-%d"))
+            self._enrollmentDate = str(datetime.strptime(enrollmentDate, "%Y-%m-%d").date())
         except Exception as e:
             raise InvalidEnrollmentDataException("Invalid Enrollment Date format. Please use YYYY-MM-DD format.")
         
@@ -59,6 +59,20 @@ class Enrollment:
     @student.setter
     def student(self, student):
         self._student = student
+
+    @property
+    def course(self):
+        return self._course
+    
+    @course.setter
+    def course(self, course):
+        self._course = course
+
+    def create_by_list(self, data):
+        self.enrollmentId = data[0]
+        self.studentId = data[1]
+        self.courseCode = data[2]
+        self.enrollmentDate = data[3]
         
     def __str__(self):
         return f"Enrollment ID: {self.enrollmentId}, Student ID: {self.studentId}, Course ID: {self.courseCode}, Enrollment Date: {self.enrollmentDate}"

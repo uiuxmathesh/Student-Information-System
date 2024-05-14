@@ -2,13 +2,14 @@ from Exceptions.custom_exceptions import InvalidPaymentDataException
 from datetime import datetime
 class Payment:
 
-    _student = list()
+    payment = []
 
     def __init__(self):
         self._paymentId = None
         self._studentId = None
         self._amount = None
         self._paymentDate = None
+        self._student = None
 
 
     @property
@@ -54,13 +55,19 @@ class Payment:
         except Exception as e:
             raise InvalidPaymentDataException("Invalid Payment Date format. Please use YYYY-MM-DD format.") 
 
-    @classmethod
-    def student(cls):
-        return cls._student
+    @property
+    def student(self):
+        return self._student
     
-    @classmethod
-    def student(cls, student):
-        cls._student = student
+    @student.setter
+    def student(self, student):
+        self._student = student
+
+    def create_from_list(self, data):
+        self.paymentId = data[0]
+        self.studentId = data[1]
+        self.amount = data[2]
+        self.paymentDate = data[3]
 
     def __str__(self):
         return f"Payment ID: {self.paymentId}, Student ID: {self.studentId}, Amount: {self.amount}, Payment Date: {self.paymentDate}"
