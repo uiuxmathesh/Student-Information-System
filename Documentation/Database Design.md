@@ -84,7 +84,7 @@
 
     ```sql
         INSERT INTO [students] ([student_id],[first_name],[last_name],[date_of_birth],[email],[phone_number])
-        VALUES ('S0001','Mathesh','Premkumar','2003-01-21','mathesh123@email.com','7788553300'),
+        VALUES  ('S0001','Mathesh','Premkumar','2003-01-21','mathesh123@email.com','7788553300'),
 	            ('S0002','Mohammed','Asik','2002-10-22','mohammedasik69@smail.com','5566224411'),
 	            ('S0003','Manoj','P','2002-10-25','manoj@dev.com','3344556677'),
 	            ('S0004','Mathew','Christopher','2002-09-24','mathewhere@email.com','5516223411'),
@@ -93,10 +93,11 @@
 	            ('S0007','Raj','Kumar','2002-01-01','rajkumarr@gmail.com','5563923732'),
 	            ('S0008','Krishna','Moorthy','2002-08-22','krishmoor@none.com','8834023756'),
 	            ('S0009','Nishant','S','2003-01-17','nishant007@xmail.com','6645382299'),
-	            ('S0010','Karthick','K','2002-09-24','karthinah@fmail.com','7878964645');
+	            ('S0010','Karthick','K','2002-09-24','karthinah@fmail.com','7878964645'),
+		        ('S0011','Ketheesa','K','2003-06-30','keth6211@gmail.com','7734644278');
 
         INSERT INTO [teacher] ([teacher_id],[first_name],[last_name],[email])
-        VALUES ('T0001','Ragav','kumar','ragavkumarv@gmail.com'),
+        VALUES  ('T0001','Ragav','kumar','ragavkumarv@gmail.com'),
 	            ('T0002','Nelson','Dilipkumar','nelsondilip@email.com'),
 	            ('T0003','Lokesh','kanagaraj','lokeshk@imail.com'),
 	            ('T0004','Prithviraj','S','sprithvi@email.com'),
@@ -105,10 +106,14 @@
 	            ('T0007','Ajith','Kumar','ajithkumarak@vmail.com'),
 	            ('T0008','Ashok','Selvan','ashokashok@email.com'),
 	            ('T0009','Myskin','M','mmyskin@lmail.com'),
-	            ('T0010','Vinoth','H','hvinoth@gmail.com');
+	            ('T0010','Vinoth','H','hvinoth@gmail.com'),
+		        ('T0011','Gautham','Menon','gauthamvmenon@gmail.com'),
+		        ('T0012','Fahadh','Fahsil','fahadhfah@fmail.com'),
+		        ('T0013','Tovino','Thomas','tovintom87@gmaul.com'),
+		        ('T0014','Suriya','Sivakumar','suriyamass@gmail.com');
 
         INSERT INTO [course] ([course_id],[course_name],[credits],[teacher_id])
-        VALUES ('C0001','Problem Solving and Python Programming',3,'T0005'),
+        VALUES  ('C0001','Problem Solving and Python Programming',3,'T0005'),
 		        ('C0002','Computer Networks',1,'T0003'),
 		        ('C0003','Software Development',3,'T0007'),
 		        ('C0004','Object Oriented Programming with Java',3,'T0002'),
@@ -117,28 +122,36 @@
 		        ('C0007','Cloud Computing',1,'T0001'),
 		        ('C0008','Internet and Web Technology',2,'T0009'),
 		        ('C0009','Mobile Application Development',2,'T0004'),
-		        ('C0010','UI/UX Design',1,'T0005');
-        INSERT INTO [enrollments]([enrollment_id],[student_id],[course_id],[enrollment_date])
-        VALUES ('E0001','S0002','C0004','2023-10-04'),
-		        ('E0002','S0004','C0003','2024-01-14'),
-		        ('E0003','S0001','C0005','2023-06-22'),
-		        ('E0004','S0007','C0007','2024-04-01'),
-		        ('E0005','S0010','C0002','2023-11-09'),
-		        ('E0006','S0006','C0008','2023-07-15'),
-		        ('E0007','S0009','C0009','2024-02-14'),
-		        ('E0008','S0009','C0002','2024-02-16'),
-		        ('E0009','S0006','C0004','2023-04-25'),
-		        ('E0010','S0006','C0003','2023-09-10')
+		        ('C0010','UI/UX Design',1,'T0005'),
+		        ('C0011','Theory of Computation', 3,'T0011'),
+		        ('C0012','Motion Graphics',1,'T0012'),
+		        ('C0013','React Native',2,'T0013');
 
         INSERT INTO [payments]([payment_id],[student_id],[amount],[payment_date])
-        VALUES ('P0001','S0003',1350.25,'2023-12-12'),
-		        ('P0002','S0006',900.00,'2023-10-04'),
-		        ('P0003','S0008',1200.72,'2024-01-11'),
-		        ('P0004','S0001',1125.00,'2023-11-05'),
-		        ('P0005','S0005',1350.25,'2023-01-03'),
-		        ('P0006','S0009',1900.15,'2024-03-06'),
-		        ('P0007','S0003',1350.00,'2024-02-21'),
-		        ('P0008','S0007',950.05,'2024-01-28'),
-		        ('P0009','S0008',3050.00,'2023-07-06'),
-		        ('P0010','S0002',1350.14,'2024-03-08')
+        VALUES  ('P0001', 'S0001', 1250.5, '2023-04-01 '),
+	            ('P0002', 'S0002', 800.4, '2023-04-02 '),
+	            ('P0003', 'S0003', 1000.25, '2023-04-07 '),
+	            ('P0004', 'S0004', 800.4, '2023-04-13 '),
+	            ('P0005', 'S0005', 800.4, '2023-04-14 '),
+	            ('P0006', 'S0006', 1600, '2023-04-16 '),
+	            ('P0007', 'S0007', 800.4, '2023-04-21 '),
+	            ('P0008', 'S0008', 800.4, '2023-04-22 '),
+	            ('P0009', 'S0009', 1250.5, '2023-04-23 '),
+	            ('P0010', 'S0010',1600, '2023-04-24 '),
+	            ('P0011', 'S0011', 1250.5, '2023-04-25 ');
+
+        INSERT INTO [enrollments]([enrollment_id],[student_id],[course_id],[enrollment_date])
+        VALUES  ('E0001', 'S0001', 'C0004', '2023-04-01 '),
+	            ('E0002', 'S0002', 'C0001', '2023-04-02 '),
+	            ('E0003', 'S0003', 'C0008', '2023-04-07 '),
+	            ('E0004', 'S0004', 'C0001', '2023-04-13 '),
+	            ('E0005', 'S0005', 'C0001', '2023-04-14 '),
+	            ('E0006', 'S0006', 'C0005', '2023-04-16 '),
+	            ('E0007', 'S0007', 'C0001', '2023-04-21 '),
+	            ('E0008', 'S0008', 'C0001', '2023-04-22 '),
+	            ('E0009', 'S0009', 'C0004', '2023-04-23 '),
+	            ('E0010', 'S0010', 'C0005', '2023-04-24 '),
+	            ('E0011', 'S0011', 'C0004', '2023-04-25 ');
+
+
     ```
