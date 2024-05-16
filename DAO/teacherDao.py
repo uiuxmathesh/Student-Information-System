@@ -2,6 +2,15 @@ from Exceptions.custom_exceptions import InvalidTeacherDataException, TeacherNot
 from Util import DBConnUtil
 class TeacherDao(DBConnUtil):
 
+    def addTeacher(self,teacher): # WORKING GOOD AS EXPECTED
+        try:
+            query = "INSERT INTO teacher ([teacher_id], [first_name], [last_name], [email], [expertise]) VALUES (?, ?, ?, ?, ?)"
+            values = (teacher.teacherId, teacher.fname, teacher.lname, teacher.email, teacher.expertise)
+            self.cursor.execute(query, values)
+            self.cursor.commit()
+        except Exception as e:
+            print(e)
+        print("Teacher added successfully")
 
     def updateTeacherInfo(self,teacher): # WORKING GOOD AS EXPECTED
         query = "UPDATE [teacher] SET [first_name] =?, [last_name] = ?, email = ?, [expertise] = ? WHERE [teacher_id] = ?"

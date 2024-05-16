@@ -61,15 +61,33 @@ class Main:
     def studentMenu(self):
         while True:
             print("+-+-+-+-+-+-+-STUDENT MENU-+-+-+-+-+-+-+")
-            print("1. Update Student Info")
-            print("2. Make Payment")
-            print("3. Display Student Info")
-            print("4. Get Enrolled Courses")
-            print("5. Get Payment History")
-            print("6. Go back")
+            print("1. Add Student")
+            print("2. Update Student Info")
+            print("3. Make Payment")
+            print("4. Enroll in Course")
+            print("5. Display Student Info")
+            print("6. Get Enrolled Courses")
+            print("7. Get Payment History")
+            print("8. Go back")
             print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
             choice = input("Please select a option to continue....")
             if choice == "1":
+                try:
+                    student = Student()
+                    student.studentId = int(input("Enter Student ID: "))
+                    student.fname = input("Enter First Name: ")
+                    student.lname = input("Enter Last Name: ")
+                    student.dob = input("Enter Date of Birth (yyyy-mm-dd): ")
+                    student.email = input("Enter Email: ")
+                    student.phone = input("Enter Phone Number: ")
+                    self.sis.studentService.addStudent(student)
+                except Exception as e:
+                    print(e)
+                else:
+                    print("Student added successfully")
+
+
+            elif choice == "2":
                 try:
                     student = Student()
                     student.studentId = int(input("Enter Student ID: "))
@@ -82,7 +100,7 @@ class Main:
                 except Exception as e:
                     print(e)
 
-            elif choice == "2":
+            elif choice == "3":
                 try:
                     studentId = int(input("Enter Student ID: "))
                     amount = float(input("Enter Amount: "))
@@ -91,7 +109,19 @@ class Main:
                 except Exception as e:
                     print(e)
 
-            elif choice == "3":
+            elif choice == "4":
+                try:
+                    student = Student()
+                    student.studentId = int(input("Enter Student ID: "))
+                    course = Course()
+                    course.code = input("Enter Course Code: ")
+                    self.sis.enrollStudentInCourse(student, course)
+                except Exception as e:
+                    print(e)
+                else:
+                    print("Student enrolled in course successfully")
+                    
+            elif choice == "5":
                 try:
                     student = Student()
                     student.studentId = int(input("Enter Student ID: "))
@@ -101,7 +131,7 @@ class Main:
                 else:
                     print(tabulate(result, headers='firstrow', tablefmt="pretty"))
 
-            elif choice == "4":
+            elif choice == "6":
                     try:
                         student = Student()
                         student.studentId = int(input("Enter Student ID: "))
@@ -109,7 +139,7 @@ class Main:
                     except Exception as e:
                         print(e)
 
-            elif choice == "5":
+            elif choice == "7":
                 try:
                     student = Student()
                     student.studentId = int(input("Enter Student ID: "))
@@ -122,7 +152,7 @@ class Main:
                     table = tabulate(result, headers='firstrow', tablefmt="fancy_grid")
                     print(table)
                 
-            elif choice == "6":
+            elif choice == "8":
                 break
             else:
                 print("Invalid choice. Please try again")
@@ -130,13 +160,28 @@ class Main:
     def teacherMenu(self):
         while True:
             print("+-+-+-+-+-+-+-TEACHER MENU-+-+-+-+-+-+-+")
-            print("1. Update Teacher Info")
-            print("2. Display Teacher Info")
-            print("3. Get Assigned Courses")
-            print("4. Go back")
+            print("1. Add Teacher")
+            print("2. Update Teacher Info")
+            print("3. Display Teacher Info")
+            print("4. Get Assigned Courses")
+            print("5. Go back")
             print("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
             choice = input("Please select a option to continue....")
             if choice == "1":
+                try:
+                    teacher = Teacher()
+                    teacher.teacherId = int(input("Enter Teacher ID: "))
+                    teacher.fname = input("Enter First Name: ")
+                    teacher.lname = input("Enter Last Name: ")
+                    teacher.email = input("Enter Email: ")
+                    teacher.expertise = input("Enter Expertise: ")
+                    self.sis.teacherService.addTeacher(teacher)
+                except Exception as e:
+                    print(e)
+                else:
+                    print("Teacher added successfully")
+
+            elif choice == "2":
                 try:
                     teacher = Teacher()
                     teacher.teacherId = int(input("Enter Teacher ID: "))
@@ -152,7 +197,7 @@ class Main:
                 else:
                     print("Teacher information updated successfully")
 
-            elif choice == "2":
+            elif choice == "3":
                 try:
                     teacher = Teacher()
                     teacher.teacherId = int(input("Enter Teacher ID: "))
@@ -162,7 +207,7 @@ class Main:
                 else:
                     print(tabulate(result, headers='firstrow', tablefmt="fancy_grid"))
 
-            elif choice == "3":
+            elif choice == "4":
                 try:
                     teacher = Teacher()
                     teacher.teacherId = int(input("Enter Teacher ID: "))
@@ -173,7 +218,7 @@ class Main:
                     table = tabulate(assignedCoursesList, headers="firstrow", tablefmt="fancy_grid")
                     print(table)
                     
-            elif choice == "4":
+            elif choice == "5":
                 break
             else:
                 print("Invalid choice. Please try again")

@@ -5,6 +5,18 @@ from Util import DBConnUtil
 
 class StudentDao(DBConnUtil):
 
+    def addStudent(self,student): # WORKING GOOD AS EXPECTED
+        query = "INSERT INTO students ([student_id], [first_name], [last_name], [date_of_birth], [email], [phone_number]) VALUES (?, ?, ?, ?, ?, ?)"
+        values = (student.studentId, student.fname, student.lname, student.dob, student.email, student.phone)
+        try:
+            self.cursor.execute(query, values)
+        except pyodbc.IntegrityError as e:
+            self.cursor.commit()
+            print(f"Student ID {student.studentId} already exists. Please enter a different Student ID.")
+        else:
+            self.cursor.commit()
+            print("Student added successfully")
+
     def enrollInCourse(self,student, course): # WORKING GOOD AS EXPECTED
 
         # Preparing the query and values
