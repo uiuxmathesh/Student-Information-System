@@ -16,7 +16,7 @@ class Teacher:
     
     @teacherId.setter
     def teacherId(self, teacherId):
-        if len(teacherId) == 0:
+        if not isinstance(teacherId, int):
             raise InvalidTeacherDataException("Teacher ID cannot be empty")
         self._teacherId = teacherId
 

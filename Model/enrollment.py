@@ -25,7 +25,7 @@ class Enrollment:
     
     @studentId.setter
     def studentId(self, studentId):
-        if not isinstance(studentId,str):
+        if not isinstance(studentId,int):
             raise InvalidEnrollmentDataException("Student ID must be an integer")
         self._studentId = studentId
 

@@ -19,8 +19,8 @@ class Student:
     
     @studentId.setter
     def studentId(self, studentId):
-        if len(studentId) == 0:
-            raise InvalidStudentDataException("Student ID cannot be empty")
+        if not isinstance(studentId, int):
+            raise InvalidStudentDataException("Student ID cannot be empty. Must be an integer.")
         self._studentId = studentId
 
     @property
@@ -95,4 +95,4 @@ class Student:
         self.phone = data[5]
 
     def __str__(self):
-        return f"Student ID: {self._studentId}, First Name: {self._fname}, Last Name: {self._lname}, DOB: {self._dob}, Email: {self._email}, Phone: {self._phone}"
+        return f"Student ID: {self.studentId}, First Name: {self.fname}, Last Name: {self.lname}, DOB: {self.dob}, Email: {self.email}, Phone: {self.phone}"

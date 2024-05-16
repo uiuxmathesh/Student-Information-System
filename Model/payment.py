@@ -28,7 +28,7 @@ class Payment:
     
     @studentId.setter
     def studentId(self, studentId):
-        if not isinstance(studentId,str):
+        if not isinstance(studentId,int):
             raise InvalidPaymentDataException("Student ID must be an integer")
         self._studentId = studentId
 

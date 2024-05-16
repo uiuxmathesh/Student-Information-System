@@ -55,8 +55,8 @@ class Course:
     
     @teacherId.setter
     def teacherId(self, teacherId):
-        if len(teacherId) == 0:
-            raise InvalidCourseDataException("Teacher ID cannot be empty")
+        if isinstance(teacherId, int) == False:
+            raise InvalidCourseDataException("Teacher ID must be an integer")
         self._teacherId = teacherId  
 
     @classmethod

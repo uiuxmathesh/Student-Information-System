@@ -24,39 +24,29 @@ class ReportGen:
         table = Table(data)
 
         #Setting the style of the table
-        style = TableStyle([
+        style = [
                     ('BACKGROUND', (0,0), (-1,0), colors.green),
                     ('TEXTCOLOR',(0,0),(-1,0),colors.whitesmoke),
                     ('ALIGN',(0,0),(-1,0),'CENTER'),
                     ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
                     ('BOTTOMPADDING', (0,0), (-1,0), 12),
-                    ])
+                ]
         
         rownum = len(data)
         for row in range(1, rownum):
             if len(data) % 2 == 0:
-                bc = colors.burlywood
+                bc = colors.lightgrey
             else:
-                bc = colors.beige
-            style.add('BACKGROUND', (0,row), (-1,row), bc)
-            
+                bc = colors.whitesmoke
+            style.append( ('BACKGROUND', (0,row), (-1,row), bc) )
 
-        table.setStyle(style)
+        tableStyle = TableStyle(style)
+        table.setStyle(tableStyle)
         elems = []
         elems.append(table)
         pdf.build(elems)
-
+        print(f"Report generated successfully. File: {self.fileName}")
         
-        # can.showPage()
-        # can.save()
-    
-    # def generateReport(self, data, baseName):
-    #     print("Generating report...")
-    #     pdf = self.createReport(data, baseName)
-    #     with open(f"{baseName}_report_{self.date}.pdf", "wb") as f:
-    #         f.write(pdf)
-    #     print(f"Report generated successfully. Please check {baseName}_report_{self.date}.pdf")
-    #     return f"{baseName}_report_{self.date}.pdf" 
 
 
 
