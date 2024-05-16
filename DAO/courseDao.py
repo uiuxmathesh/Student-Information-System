@@ -23,11 +23,11 @@ class CourseDao(DBConnUtil):
 
 
     def updateCourseInfo(self,course): # WORKING GOOD AS EXPECTED
-
-        query = "UPDATE [course] SET [course_name] = ?, [credits] = ?, [course_fee] = ?, [teacher_id] = ? WHERE [course_code] = ?"
-        values = (course.name, course.credit, course.fee, course.teacherId, course.code)
-        self.cursor.execute(query, values)
-        self.cursor.commit()
+            self.displayCourseInfo(course)
+            query = "UPDATE [course] SET [course_name] = ?, [credits] = ?, [course_fee] = ?, [teacher_id] = ? WHERE [course_code] = ?"
+            values = (course.name, course.credit, course.fee, course.teacherId, course.code)
+            self.cursor.execute(query, values)
+            self.cursor.commit()
 
 
     def displayCourseInfo(self,course): # WORKING GOOD AS EXPECTED
@@ -35,11 +35,15 @@ class CourseDao(DBConnUtil):
         values = (course.code)
         self.cursor.execute(query, values)
         courseInfo = self.cursor.fetchone()
-        # headers = tuple(column[0] for column in self.cursor.description)
-        # courseInfo = [headers] + courseInfo
-        return courseInfo
+        if courseInfo == None:
+            raise CourseNotFoundException(f"Course Code {course.code} not found. Please enter a valid Course Code.")
+        else:
+            headers = tuple(column[0] for column in self.cursor.description)
+            courseInfo = [headers] + [courseInfo]
+            return courseInfo
 
     def getTeacher(self,course): # WORKING GOOD AS EXPECTED
+        self.displayCourseInfo(course)
         query = "SELECT * FROM [teacher] WHERE [teacher_id] = (SELECT [teacher_id] FROM [course] WHERE [course_code] = ?)"
         values = (course.code)
         self.cursor.execute(query, values)
@@ -49,6 +53,7 @@ class CourseDao(DBConnUtil):
         return teacher
 
     def getEnrollments(self,course): # WORKING GOOD AS EXPECTED
+        self.displayCourseInfo(course)
         query = "SELECT * FROM [enrollments] WHERE [course_code] = ?"
         values = (course.code)
         self.cursor.execute(query, values)

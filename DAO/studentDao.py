@@ -37,10 +37,12 @@ class StudentDao(DBConnUtil):
         values = (student.fname, student.lname, student.dob, student.email, student.phone, student.studentId)
         self.cursor.execute(query, values)
         self.cursor.commit()
+        print("Student information updated successfully")
 
     def makePayment(self,studentId,amount:float, paymentDate:str): # WORKING GOOD AS EXPECTED
 
         # Preparing the query and values
+        
         query = "INSERT INTO payments ([student_id], [amount], [payment_date]) VALUES (?, ?, ?)"
         values = (studentId, amount, paymentDate)
 
@@ -68,20 +70,45 @@ class StudentDao(DBConnUtil):
         values = (student.studentId)
         self.cursor.execute(query, values)
         studentInfo = self.cursor.fetchone()
+        if studentInfo == None:
+            raise StudentNotFoundException(f"Student ID {student.studentId} not found. Please enter a valid Student ID.")
+        header = self.cursor.description
+        header = tuple(column[0] for column in header)
+        studentInfo = [header, studentInfo]
         return studentInfo
 
     def getEnrolledCourses(self,student): # WORKING GOOD AS EXPECTED
-        query = "SELECT * FROM enrollments WHERE [student_id] = ?"
-        values = (student.studentId)
+        query = """
+                SELECT	students.student_id AS enrollment_id,
+                        CONCAT(students.first_name,' ',students.last_name) AS students_name,
+                        course.course_code,
+                        course.course_name,
+                        course.course_fee,
+                        course.credits,
+                        teacher.teacher_id,
+                        CONCAT(teacher.first_name,' ',teacher.last_name) AS teacher_name
+                FROM	[course]
+                        INNER JOIN [enrollments] ON course.course_code = enrollments.course_code
+                        INNER JOIN [students] ON students.student_id = enrollments.student_id
+                        INNER JOIN [teacher] ON teacher.teacher_id = course.teacher_id
+                WHERE	students.student_id = ?
+                """
+        values = student.studentId
         self.cursor.execute(query, values)
         enrolledCourses = self.cursor.fetchall()
+        headers =  self.cursor.description
+        headers = tuple(header[0] for header in headers)
+        enrolledCourses = [headers, *enrolledCourses]
         return enrolledCourses
 
-    def getPayments(self,student):  # WORKING GOOD AS EXPECTED
+    def getPaymentHistory(self,student):  # WORKING GOOD AS EXPECTED
         query = "SELECT * FROM payments WHERE [student_id] = ?"
         values = (student.studentId)
         self.cursor.execute(query, values)
         payments = self.cursor.fetchall()
+        headers =  self.cursor.description
+        headers = tuple(header[0] for header in headers)
+        payments = [headers, *payments]
         return payments
 
 
