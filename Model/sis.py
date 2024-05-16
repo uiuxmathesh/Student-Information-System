@@ -24,6 +24,10 @@ class SIS:
         print("Initializing payment services...")
         self.paymentService = PaymentDao()
 
+    def addStudent(self, student: Student):
+        studentID = self.studentService.addStudent(student)
+        print(f"Student added successfully. Student ID: {studentID}")
+
     def enrollStudentInCourse(self, student: Student, course: Course):
         # Checking if the student and course exist in the database
         studentDetails = self.studentService.displayStudentInfo(student)
@@ -77,7 +81,7 @@ class SIS:
         student = Student()
         student.studentId = studentId
         studentDetails = self.studentService.displayStudentInfo(student)
-        courseFee = self.studentService.getEnrolledCourses(student)[0][4]
+        courseFee = self.studentService.getEnrolledCourses(student)[1][4]
         if amount <= 0:
             raise PaymentValidationException(
                 "Payment amount must be greater than 0."
